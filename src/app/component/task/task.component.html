@@ -1,0 +1,40 @@
+<div class="container">
+    <form [formGroup]='form' (ngSubmit)="signIn">
+
+        <div class="form-group row">
+            <label class="col-md-3" for="km">Количество километров</label>
+            <input formControlName="km" id="km" type="text" class="form-control col-md-9">
+
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3" for="age">Возраст</label>
+            <input formControlName="age" id="age" type="text" class="form-control col-md-9">
+
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3" for="weight">Вес багажа</label>
+            <input formControlName="weight" id="weight" type="text" class="form-control col-md-9">
+
+        </div>
+        <button class="btn btn-primary col-md-12" (click)="calculate()">Расчитать</button>
+        <div class="content">
+            <h4>Предложения:</h4>
+            <ul class="list-group">
+                <li class="list-group-item list-title"> Аэрофлот</li>
+                <li class="list-group-item" *ngFor="let list of aeroflotTarifs">
+                    <span>{{list.title}}</span>
+                    <span *ngIf="list.salary > 0"> {{list.salary | currency:"RUB":'symbol-narrow'}} </span>
+                    <span *ngIf="list.salary == 0"> - </span>
+                </li>
+
+                <li class="list-group-item list-title"> РЖД</li>
+                <li class="list-group-item" *ngFor="let list of rjdTarifs">
+                    <span>{{list.title}}</span>
+                    <span *ngIf="list.salary > 0"> {{list.salary | currency:"RUB":'symbol-narrow'}} </span>
+                    <span *ngIf="list.salary == 0"> - </span>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
